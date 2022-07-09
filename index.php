@@ -1,3 +1,4 @@
+<?php header('Access-Control-Allow-Origin: *'); ?>
 <?php if(isset($_POST['sourcemail'])){ $sourcemail = $_POST['sourcemail']; }else{  $sourcemail=""; }?>
 <?php if(isset($_POST['sourcemail_fullname'])){ $sourcemail_fullname = $_POST['sourcemail_fullname']; }else{  $sourcemail_fullname=""; }?>
 <?php if(isset($_POST['desinationmail'])){ $desinationmail = $_POST['desinationmail']; }else{  $desinationmail=""; }?>
