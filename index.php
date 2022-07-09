@@ -41,7 +41,8 @@ try {
     $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     // $mail->Port = 465;
-
+    $mail->CharSet = 'UTF-8';
+    
     //Recipients
     $mail->setFrom($sourcemail, $sourcemail_fullname);
     $mail->addAddress($desinationmail, $desinationmail_fullname);     //Add a recipient
