@@ -6,7 +6,7 @@ require_once 'vendor/autoload.php';
 // init configuration
 $clientID = '225954121444-jei3gtpeigsn0ch12mr3i7qfd9vfgac2.apps.googleusercontent.com';
 $clientSecret = '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';
-$redirectUri = './test_druauthen.php';
+$redirectUri = 'https://e-portfolio.dru.ac.th/';
 
 // create Client Request to access Google API
 $client = new Google_Client();
