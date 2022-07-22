@@ -38,7 +38,7 @@ foreach ($getdata as $key => $value) {
 
 
 
-$datatoken = json_decode(file_get_contents('token.json'));
+$datatoken = json_decode($token);
 // var_dump($datatoken);
 $token = array();
 foreach ($datatoken as $key => $value) {
