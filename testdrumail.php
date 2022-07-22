@@ -37,7 +37,25 @@ foreach ($getdata as $key => $value) {
   }
 }
 
+$setstr = '';
 
+foreach ($newset as $key => $value) {
+  // echo gettype($value);
+  switch (gettype($value)) {
+    case 'string':
+      $setstr .= ' "'.$key.'":"'.$value.'", ';
+    break;
+    case 'array':
+      $newarray = $value;
+      $setstr .= ' "'.$key.'": {';
+      foreach ($newarray as $keyone => $valueone) {
+        $setstr .= ' "'.$keyone.'":"'.$valueone.'", ';
+      }
+      $setstr .= ' },';
+    break;
+  }
+}
+$setstr = '{'.$setstr.'}';
 
 $datatoken = json_decode($token);
 // var_dump($datatoken);
@@ -57,14 +75,7 @@ $curl = curl_init();
   CURLOPT_FOLLOWLOCATION => true,
   CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
   CURLOPT_CUSTOMREQUEST => 'POST',
-  CURLOPT_POSTFIELDS =>'{
-   "name": {
-    "familyName": "'.$newset['familyName'].'",
-    "givenName": "'.$newset['givenName'].'"
-   },
-   "password": "'.$newset['password'].'",
-   "primaryEmail": "'.$newset['primaryEmail'].'"
-   }',
+  CURLOPT_POSTFIELDS =>$setstr,
   CURLOPT_HTTPHEADER => array(
    'Content-Type: application/json'
   ),
