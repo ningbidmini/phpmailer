@@ -1,5 +1,11 @@
-<?php if(isset($_POST['credentials'])){ $credentials = $_POST['credentials']; }else{  $credentials=""; }?>
-<?php if(isset($_POST['token'])){ $token = $_POST['token']; }else{  $token=""; }?>
+<?php if(isset($_POST['credentials'])){ $credentials = $_POST['credentials']; }else{
+  $credentials=json_encode(array(
+    'web'=>array(),
+  ));
+}?>
+<?php if(isset($_POST['token'])){ $token = $_POST['token']; }else{
+  $token=json_encode(array()); 
+}?>
 <?php if(isset($_POST['dataset'])){ $dataset = $_POST['dataset']; }else{  $dataset=""; }?>
 <?php
   header('Access-Control-Allow-Origin: *');
