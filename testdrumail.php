@@ -1,6 +1,7 @@
+<?php header('Access-Control-Allow-Origin: *'); ?>
 <?php if(isset($_POST['token'])){ $token = $_POST['token']; }else{
   $token=json_encode(array(
-    'access_token'=>'ya29.A0AVA9y1uE85y7xwgBL9mQbnF81chNVrqjZx1oBKJ_6W7ccHdRpvPQ6XER3TEv9mtltUGN-camaotuhUHWlWMIE3NRVJiqO7tMCHwo-Y_fSiQRtW2G1xbupNxpjxSwMxBazO3gzzKX4zU4L-egnBMLJgB1cNRTYUNnWUtBVEFTQVRBU0ZRRTY1ZHI4ZXhpOVFCSVE3YU4tYlVuOU9ocDd6UQ0163',
+    'access_token'=>'ya29.A0AVA9y1sQ9miOB7MN02m6-8oAGOWILKAS1uuTuseVb4EjRmyoEudAyIQ2I7ikJzwYq9Fk33yIX857khe-0S5AMwFEJLYT6uIvq9WmiKkz9lIGuX3Jbc7GIkzcMERUvO1Q6ra7AsPYul0JHcf4JA4l5qQ-ATeyYUNnWUtBVEFTQVRBU0ZRRTY1ZHI4RVAzSXY1Vm00UzlreEVrTjNIVlpyZw0163',
   ));
 }?>
 <?php if(isset($_POST['dataset'])){ $dataset = $_POST['dataset']; }else{
