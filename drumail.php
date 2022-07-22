@@ -4,9 +4,18 @@
   ));
 }?>
 <?php if(isset($_POST['token'])){ $token = $_POST['token']; }else{
-  $token=json_encode(array()); 
+  $token=json_encode(array());
 }?>
-<?php if(isset($_POST['dataset'])){ $dataset = $_POST['dataset']; }else{  $dataset=""; }?>
+<?php if(isset($_POST['dataset'])){ $dataset = $_POST['dataset']; }else{
+  $dataset=json_encode(array(
+    'password'=>'T87654321',
+    'primaryEmail'=>'tossapol.xc@dru.ac.th',
+    'name'=>array(
+      'familyName'=>'testx',
+      'givenName'=>'testxxx',
+    ),
+  ));
+}?>
 <?php
   header('Access-Control-Allow-Origin: *');
   ini_set('error_reporting', E_ALL);
@@ -14,22 +23,22 @@
   require __DIR__ . '/vendor/autoload.php';
 
 
-  $client = new Google_Client();
-
-
-  $datacredentials = json_decode($credentials);
-  // var_dump($credentials);
-  $credentials = array();
-  foreach ($datacredentials->web as $key => $value) {
-    // array_push($credentials,array($key=>$value));
-    $credentials[$key]=$value;
-  }
-
-  $client->setAuthConfig($credentials);
-
-  $client->setSubject('tossapol.c@dru.ac.th');
-
-  $client->addScope('https://www.googleapis.com/auth/admin.directory.user');
+  // $client = new Google_Client();
+  //
+  //
+  // $datacredentials = json_decode($credentials);
+  // // var_dump($credentials);
+  // $credentials = array();
+  // foreach ($datacredentials->web as $key => $value) {
+  //   // array_push($credentials,array($key=>$value));
+  //   $credentials[$key]=$value;
+  // }
+  //
+  // $client->setAuthConfig($credentials);
+  //
+  // $client->setSubject('tossapol.c@dru.ac.th');
+  //
+  // $client->addScope('https://www.googleapis.com/auth/admin.directory.user');
 
 
   $datatoken = json_decode($token);
@@ -39,7 +48,7 @@
     $token[$key]=$value;
   }
 
-  $client->setAccessToken($token['access_token']);
+  // $client->setAccessToken($token['access_token']);
 
 
   $newset = array();
@@ -63,6 +72,26 @@
     }
   }
 
+  $setstr = '';
+
+  foreach ($newset as $key => $value) {
+    // echo gettype($value);
+    switch (gettype($value)) {
+      case 'string':
+        $setstr .= ' "'.$key.'":"'.$value.'", ';
+      break;
+      case 'array':
+        $newarray = $value;
+        $setstr .= ' "'.$key.'": {';
+        foreach ($newarray as $keyone => $valueone) {
+          $setstr .= ' "'.$keyone.'":"'.$valueone.'", ';
+        }
+        $setstr .= ' },';
+      break;
+    }
+  }
+  $setstr = '{'.$setstr.'}';
+
   $curl = curl_init();
 
    curl_setopt_array($curl, array(
@@ -74,14 +103,7 @@
     CURLOPT_FOLLOWLOCATION => true,
     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
     CURLOPT_CUSTOMREQUEST => 'POST',
-    CURLOPT_POSTFIELDS =>'{
-     "name": {
-      "familyName": "'.$newset['familyName'].'",
-      "givenName": "'.$newset['givenName'].'"
-     },
-     "password": "'.$newset['password'].'",
-     "primaryEmail": "'.$newset['primaryEmail'].'"
-     }',
+    CURLOPT_POSTFIELDS =>$setstr,
     CURLOPT_HTTPHEADER => array(
      'Content-Type: application/json'
     ),
