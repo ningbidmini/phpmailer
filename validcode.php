@@ -13,8 +13,8 @@ $dataset = array(
   'grant_type'    => 'authorization_code',
 );
 echo '<pre>';
-var_dump($dataset);
-exit;
+// var_dump($dataset);
+// exit;
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL,"https://accounts.google.com/o/oauth2/token");
     curl_setopt($ch, CURLOPT_POST, TRUE);
