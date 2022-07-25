@@ -13,8 +13,8 @@ $dataset = array(
   'redirect_uri'  => $redirecturl,
   'grant_type'    => 'authorization_code',
 );
-echo '<pre>';
-var_dump($dataset);
+// echo '<pre>';
+// var_dump($dataset);
 
 // exit;
     $ch = curl_init();
@@ -30,6 +30,7 @@ var_dump($dataset);
 
     $response = curl_exec($ch);
     curl_close ($ch);
-    var_dump($response);
-    // echo $response;
+    // file_put_contents('https://e-portfolio.dru.ac.th/views/backend/token.json',$response);
+    // var_dump($response);
+    echo $response;
 ?>
