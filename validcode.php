@@ -3,7 +3,8 @@
 <?php if(isset($_POST['redirecturl'])){ $redirecturl = $_POST['redirecturl']; }else{  $redirecturl=""; }?>
 <?php if(isset($_POST['clientsecret'])){ $clientsecret = $_POST['clientsecret']; }else{  $clientsecret=""; }?>
 <?php
-$headers = array('Content-Type: application/json');
+// $headers = array('Content-Type: application/json');
+$headers = array('Content-Type: application/x-www-form-urlencoded');
 
 $dataset = array(
   'code'          => $code,
@@ -14,7 +15,8 @@ $dataset = array(
 );
 echo '<pre>';
 var_dump($dataset);
-exit;
+
+// exit;
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL,"https://accounts.google.com/o/oauth2/token");
     curl_setopt($ch, CURLOPT_POST, TRUE);
@@ -28,6 +30,6 @@ exit;
 
     $response = curl_exec($ch);
     curl_close ($ch);
-    // var_dump($response);
-    echo $response;
+    var_dump($response);
+    // echo $response;
 ?>
