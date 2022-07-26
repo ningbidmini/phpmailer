@@ -4,20 +4,26 @@ header('Access-Control-Allow-Origin: *');
 ini_set('error_reporting', E_ALL);
 ini_set('display_errors', 1);
 $datatoken = json_decode($token);
+$token = array();
 foreach ($datatoken as $key => $value) {
   $token[$key]=$value;
 }
+$status = array();
+$status['status']=false;
+if(count($token)>0){
+  $ch = curl_init();
+  curl_setopt($ch, CURLOPT_URL, 'https://www.googleapis.com/oauth2/v1/tokeninfo?access_token='.$token['access_token']);
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+  $error_response = curl_exec($ch);
+  curl_close ($ch);
 
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, 'https://www.googleapis.com/oauth2/v1/tokeninfo?access_token='.$token['access_token']);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-$error_response = curl_exec($ch);
-curl_close ($ch);
+  var_dump($error_response);
+  $array = json_decode($error_response);
+  echo "<br/>";
+  var_dump($array);
 
-var_dump($error_response);
-$array = json_decode($error_response);
-echo "<br/>";
-var_dump($array);
+  echo json_encode($status);
+}
 
 // if( isset($array->error)){
 //
