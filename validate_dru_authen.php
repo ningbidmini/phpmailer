@@ -1,9 +1,9 @@
-<?php if(isset($_POST['token'])){ $token = $_POST['token']; }else{  $token=json_encode(array('access_token'=>'')); }?>
+<?php if(isset($_POST['token'])){ $token = $_POST['token']; }else{  $token=json_encode(array()); }?>
 <?php
 header('Access-Control-Allow-Origin: *');
 ini_set('error_reporting', E_ALL);
 ini_set('display_errors', 1);
-$datatoken = $token;
+$datatoken = json_decode($token);
 foreach ($datatoken as $key => $value) {
   $token[$key]=$value;
 }
