@@ -3,11 +3,15 @@
 header('Access-Control-Allow-Origin: *');
 ini_set('error_reporting', E_ALL);
 ini_set('display_errors', 1);
+echo 'Begin';
+var_dump($token);
 $datatoken = json_decode($token);
 $token = array();
 foreach ($datatoken as $key => $value) {
   $token[$key]=$value;
 }
+echo '<br>End<br>';
+var_dump($token);
 $status = array();
 $status['status']=false;
 if(count($token)>0){
