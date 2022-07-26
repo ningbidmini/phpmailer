@@ -3,6 +3,10 @@
 header('Access-Control-Allow-Origin: *');
 ini_set('error_reporting', E_ALL);
 ini_set('display_errors', 1);
+$datatoken = $token;
+foreach ($datatoken as $key => $value) {
+  $token[$key]=$value;
+}
 
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, 'https://www.googleapis.com/oauth2/v1/tokeninfo?access_token='.$token['access_token']);
