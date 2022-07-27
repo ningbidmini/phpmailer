@@ -19,11 +19,11 @@ $status['status']=false;
 if(count($token)>0){
   $apikey='AIzaSyDSr5icH2KrI_YEZKSXQ-iZW973y9u1jLU';
   $headers = array(
-    'Authorization: Bearer '.$access_token.'',
+    'Authorization: Bearer '.$token['access_token'].'',
     'Content-Type: application/json',
   );
   if(empty($search)==false){
-    $dataquery = "&query=email:".$search;    
+    $dataquery = "&query=email:".$search;
   }
   $ch = curl_init();
   curl_setopt($ch, CURLOPT_URL, 'https://admin.googleapis.com/admin/directory/v1/users?domain=dru.ac.th&maxResults='.$maxresult.'&key='.$apiKey);
