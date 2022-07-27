@@ -26,7 +26,7 @@ if(count($token)>0){
     $dataquery = "&query=email:".$search;
   }
   $ch = curl_init();
-  curl_setopt($ch, CURLOPT_URL, 'https://admin.googleapis.com/admin/directory/v1/users?domain=dru.ac.th&maxResults='.$maxresult.'&key='.$apiKey);
+  curl_setopt($ch, CURLOPT_URL, 'https://admin.googleapis.com/admin/directory/v1/users?domain=dru.ac.th&maxResults='.$maxresult.'&key='.$apikey);
   curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
   curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
   $error_response = curl_exec($ch);
