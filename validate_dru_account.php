@@ -39,9 +39,21 @@ if(count($token)>0){
   // var_dump($error_response);
   $array = json_decode($error_response);
   // echo "<br/>";
-  var_dump($array);
+  // var_dump($array);
   //
   // echo json_encode($status);
+  if(isset($array->users)){
+    $status['status']=true;
+    foreach ($array->users as $key => $value) {
+      $status['data'][$key]['givenName']=$value->name->givenName;
+      $status['data'][$key]['familyName']=$value->name->familyName;
+      $status['data'][$key]['fullName']=$value->name->fullName;
+      $status['data'][$key]['lastLoginTime']=$value->lastLoginTime;
+      $status['data'][$key]['creationTime']=$value->creationTime;
+      $status['data'][$key]['suspended']=$value->suspended;
+      $status['data'][$key]['primaryEmail']=$value->primaryEmail;
+    }
+  }
 }
 
 echo json_encode($status);
