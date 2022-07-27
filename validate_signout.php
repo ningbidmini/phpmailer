@@ -25,12 +25,23 @@ if(count($token)>0){
   // var_dump($error_response);
   $array = json_decode($error_response);
   // echo "<br/>";
-  echo '<pre>';
-  var_dump($array);
+  // echo '<pre>';
+  // var_dump($array);
   //
   // echo json_encode($status);
 }
 
+if( isset($array->error)){
+  foreach ($array as $key => $value) {
+    $status['error'][$key]=$value;
+  }
+}else{
+  $status['status']=true;
+  foreach ($array as $key => $value) {
+    $status['data'][$key]=$value;
+  }
+}
+echo json_encode($status);
 
 // $mailname =
 
