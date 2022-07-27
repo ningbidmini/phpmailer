@@ -35,7 +35,7 @@ if(count($token)>0){
   // var_dump($error_response);
   $array = json_decode($error_response);
   // echo "<br/>";
-  // var_dump($array);
+  var_dump($array);
   //
   // echo json_encode($status);
 }
