@@ -30,6 +30,7 @@ if(count($token)>0){
   curl_setopt($ch, CURLOPT_URL, 'https://admin.googleapis.com/admin/directory/v1/users/'.$email);
   curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
   curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+  curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
   $error_response = curl_exec($ch);
   curl_close ($ch);
 
@@ -43,7 +44,7 @@ if(count($token)>0){
   curl_setopt($ch, CURLOPT_URL, 'https://admin.googleapis.com/admin/directory/v1/users?domain=dru.ac.th&maxResults='.$maxresult.$dataquery);
   curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
   curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-  curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
+
 
   $error_response = curl_exec($ch);
   curl_close ($ch);
