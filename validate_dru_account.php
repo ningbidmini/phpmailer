@@ -1,5 +1,5 @@
 <?php if(isset($_POST['token'])){ $token = $_POST['token']; }else{  $token=json_encode(array()); }?>
-<?php if(isset($_POST['maxresult'])){ $maxresult = $_POST['maxresult']; }else{  $maxresult=""; }?>
+<?php if(isset($_POST['maxresult'])){ $maxresult = $_POST['maxresult']; }else{  $maxresult="200"; }?>
 <?php if(isset($_POST['search'])){ $search = $_POST['search']; }else{  $search=""; }?>
 <?php
 header('Access-Control-Allow-Origin: *');
@@ -23,11 +23,14 @@ if(count($token)>0){
     // 'Content-Type: application/json',
     'Accept: application/json',
   );
+  $dataquery = "";
   if(empty($search)==false){
     $dataquery = "&query=email:".$search;
   }
+
   $ch = curl_init();
-  curl_setopt($ch, CURLOPT_URL, 'https://admin.googleapis.com/admin/directory/v1/users?domain=dru.ac.th&maxResults='.$maxresult.'&key='.$apikey);
+
+  curl_setopt($ch, CURLOPT_URL, 'https://admin.googleapis.com/admin/directory/v1/users?domain=dru.ac.th&maxResults='.$maxresult.$dataquery);
   curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
   curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
   $error_response = curl_exec($ch);
