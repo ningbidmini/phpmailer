@@ -53,7 +53,7 @@ if(count($token)>0){
     // echo gettype($value);
     switch (gettype($value)) {
       case 'string':
-        $setstr .= ' "'.$key.'":"'.$value.'", ';
+        $setstr .= ' "'.$key.'":'.$value.', ';
       break;
       case 'array':
         $newarray = $value;
