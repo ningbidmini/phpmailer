@@ -77,7 +77,7 @@ if(count($token)>0){
   curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
   $error_response = curl_exec($ch);
   curl_close ($ch);
-  echo $error_response;
+  // echo $error_response;
   // $dataquery = "";
   // if(empty($email)==false){
   //   $dataquery = "&query=email:".$email;
@@ -94,28 +94,28 @@ if(count($token)>0){
   // curl_close ($ch);
   //
   // // var_dump($error_response);
-  // $array = json_decode($error_response);
+  $array = json_decode($error_response);
   // // echo "<br/>";
   // // var_dump($array);
   // //
   // // echo json_encode($status);
-  // if(isset($array->users)){
-  //   $status['status']=true;
-  //   foreach ($array->users as $key => $value) {
-  //     $status['data'][$key]['givenName']=$value->name->givenName;
-  //     $status['data'][$key]['familyName']=$value->name->familyName;
-  //     $status['data'][$key]['fullName']=$value->name->fullName;
-  //     $status['data'][$key]['lastLoginTime']=$value->lastLoginTime;
-  //     $status['data'][$key]['creationTime']=$value->creationTime;
-  //     $status['data'][$key]['suspended']=$value->suspended;
-  //     $status['data'][$key]['primaryEmail']=$value->primaryEmail;
-  //   }
-  // }
-  // if(isset($array->error)){
-  //   foreach ($array as $key => $value) {
-  //     $status['error'][$key]=$value;
-  //   }
-  // }
+  if(isset($array->suspended)){
+    $status['status']=true;
+    // foreach ($array->users as $key => $value) {
+    //   $status['data'][$key]['givenName']=$value->name->givenName;
+    //   $status['data'][$key]['familyName']=$value->name->familyName;
+    //   $status['data'][$key]['fullName']=$value->name->fullName;
+    //   $status['data'][$key]['lastLoginTime']=$value->lastLoginTime;
+    //   $status['data'][$key]['creationTime']=$value->creationTime;
+    //   $status['data'][$key]['suspended']=$value->suspended;
+    //   $status['data'][$key]['primaryEmail']=$value->primaryEmail;
+    // }
+  }
+  if(isset($array->error)){
+    foreach ($array as $key => $value) {
+      $status['error'][$key]=$value;
+    }
+  }
 }
 
 echo json_encode($status);
