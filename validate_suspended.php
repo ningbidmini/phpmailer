@@ -24,7 +24,7 @@ if(count($token)>0){
   $apikey='AIzaSyDSr5icH2KrI_YEZKSXQ-iZW973y9u1jLU';
   $headers = array(
     'Authorization: Bearer '.$token['access_token'].'',
-    // 'Content-Type: application/json',
+    'Content-Type: application/json',
     'Accept: application/json',
   );
 
@@ -91,7 +91,7 @@ if(count($token)>0){
    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
    CURLOPT_CUSTOMREQUEST => 'PUT',
    // CURLOPT_POSTFIELDS =>$newset,
-   CURLOPT_POSTFIELDS =>'{"suspended":true}',
+   CURLOPT_POSTFIELDS =>'{"suspended":"true"}',
    CURLOPT_HTTPHEADER => $headers,
   ));
 
