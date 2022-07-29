@@ -68,15 +68,34 @@ if(count($token)>0){
   $setstr = '{'.$setstr.'}';
 
 
-  $ch = curl_init();
+  // $ch = curl_init();
+  //
+  // curl_setopt($ch, CURLOPT_URL, );
+  // curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+  // curl_setopt($ch, CURLOPT_POSTFIELDS, $setstr);
+  // curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+  // curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
+  // $error_response = curl_exec($ch);
+  // curl_close ($ch);
 
-  curl_setopt($ch, CURLOPT_URL, 'https://admin.googleapis.com/admin/directory/v1/users/'.$email);
-  curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-  curl_setopt($ch, CURLOPT_POSTFIELDS, $setstr);
-  curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-  curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
-  $error_response = curl_exec($ch);
-  curl_close ($ch);
+  $curl = curl_init();
+  curl_setopt_array($curl, array(
+   CURLOPT_URL => 'https://admin.googleapis.com/admin/directory/v1/users/'.$email,
+   CURLOPT_RETURNTRANSFER => true,
+   CURLOPT_ENCODING => '',
+   CURLOPT_MAXREDIRS => 10,
+   CURLOPT_TIMEOUT => 0,
+   CURLOPT_FOLLOWLOCATION => true,
+   CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+   CURLOPT_CUSTOMREQUEST => 'PUT',
+   CURLOPT_POSTFIELDS =>$setstr,
+   CURLOPT_HTTPHEADER => $headers,
+  ));
+
+  $error_response = curl_exec($curl);
+
+  curl_close($curl);
+
   // echo $error_response;
   // $dataquery = "";
   // if(empty($email)==false){
