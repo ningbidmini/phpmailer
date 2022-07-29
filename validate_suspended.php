@@ -90,7 +90,7 @@ if(count($token)>0){
    CURLOPT_FOLLOWLOCATION => true,
    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
    CURLOPT_CUSTOMREQUEST => 'PUT',
-   CURLOPT_POSTFIELDS =>$setstr,
+   CURLOPT_POSTFIELDS =>$newset,
    CURLOPT_HTTPHEADER => $headers,
   ));
 
@@ -121,7 +121,7 @@ if(count($token)>0){
   // //
   // // echo json_encode($status);
   if(isset($array->suspended)){
-    $status['data_suspended']=$setstr;
+    $status['data_suspended']=$newset;
     foreach ($array as $key => $value) {
       $status['data'][$key]=$value;
     }
