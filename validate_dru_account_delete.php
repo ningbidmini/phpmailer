@@ -81,8 +81,8 @@ if(count($token)>0){
       $status['data'][$key]['givenName']=$value->name->givenName;
       $status['data'][$key]['familyName']=$value->name->familyName;
       $status['data'][$key]['fullName']=$value->name->fullName;
-      $status['data'][$key]['lastLoginTime']=$value->lastLoginTime;
-      $status['data'][$key]['creationTime']=$value->creationTime;
+      // $status['data'][$key]['lastLoginTime']=$value->lastLoginTime;
+      // $status['data'][$key]['creationTime']=$value->creationTime;
       $status['data'][$key]['suspended']=$value->suspended;
       $status['data'][$key]['primaryEmail']=$value->primaryEmail;
     }
