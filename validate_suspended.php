@@ -1,7 +1,9 @@
 <?php if(isset($_POST['token'])){ $token = $_POST['token']; }else{  $token=json_encode(array()); }?>
 <?php if(isset($_POST['email'])){ $email = $_POST['email']; }else{  $email=""; }?>
 <?php if(isset($_POST['dataset'])){ $dataset = $_POST['dataset']; }else{
-  $dataset=json_encode(array());
+  $dataset=json_encode(array(
+    'suspended':true,
+  ));
 }?>
 <?php
 header('Access-Control-Allow-Origin: *');
