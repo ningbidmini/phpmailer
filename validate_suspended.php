@@ -88,7 +88,7 @@ if(count($token)>0){
    CURLOPT_FOLLOWLOCATION => true,
    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
    CURLOPT_CUSTOMREQUEST => 'PUT',
-   CURLOPT_POSTFIELDS =>http_build_query($newset),
+   CURLOPT_POSTFIELDS =>$newset,
    CURLOPT_HTTPHEADER => $headers,
   ));
 
