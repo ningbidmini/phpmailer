@@ -2,7 +2,7 @@
 <?php if(isset($_POST['email'])){ $email = $_POST['email']; }else{  $email=""; }?>
 <?php if(isset($_POST['dataset'])){ $dataset = $_POST['dataset']; }else{
   $dataset=json_encode(array(
-    'suspended':true,
+    'suspended'=>true,
   ));
 }?>
 <?php
