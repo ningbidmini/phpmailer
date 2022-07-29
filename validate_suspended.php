@@ -119,6 +119,7 @@ if(count($token)>0){
   // //
   // // echo json_encode($status);
   if(isset($array->suspended)){
+    $status['data_suspended']=$newset;
     foreach ($array as $key => $value) {
       $status['data'][$key]=$value;
     }
