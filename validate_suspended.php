@@ -100,6 +100,9 @@ if(count($token)>0){
   // //
   // // echo json_encode($status);
   if(isset($array->suspended)){
+    foreach ($array as $key => $value) {
+      $status['data'][$key]=$value;
+    }
     if($array->suspended==true){
       $status['status']=true;
 
