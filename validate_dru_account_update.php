@@ -85,7 +85,7 @@ if(count($token)>0){
 
   $ch = curl_init();
 
-  curl_setopt($ch, CURLOPT_URL, 'https://admin.googleapis.com/admin/directory/v1/users'.$getdata->primaryEmail);
+  curl_setopt($ch, CURLOPT_URL, 'https://admin.googleapis.com/admin/directory/v1/users/'.$getdata->primaryEmail);
   curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
   curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
   curl_setopt($ch, CURLOPT_ENCODING, 'utf-8');
