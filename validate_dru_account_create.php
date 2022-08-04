@@ -72,7 +72,7 @@ if(count($token)>0){
   }
   $setstr = '{'.$setstr.'}';
 
-  echo $setstr;
+  // echo $setstr;
   $headers = array(
     // 'Authorization: Bearer '.$token['access_token'].'',
     'Content-Type: application/json',
@@ -99,7 +99,7 @@ if(count($token)>0){
   $error_response = curl_exec($ch);
   curl_close ($ch);
 
-  var_dump($error_response);
+  // var_dump($error_response);
   $array = json_decode($error_response);
   // echo "<br/>";
   // var_dump($array);
@@ -119,7 +119,10 @@ if(count($token)>0){
   // }
 
   if(isset($array->error)){
-    $status['message']='Duplicate!!!';
+    $status['message']=$array->error->message;
+  }
+  if(isset($array->name)){
+    $status['status']=true;
   }
 }
 
