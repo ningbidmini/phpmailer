@@ -1,6 +1,7 @@
 <?php if(isset($_POST['token'])){ $token = $_POST['token']; }else{  $token=json_encode(array()); }?>
 <?php if(isset($_POST['maxresult'])){ $maxresult = $_POST['maxresult']; }else{  $maxresult="200"; }?>
 <?php if(isset($_POST['search'])){ $search = $_POST['search']; }else{  $search=""; }?>
+
 <?php
 header('Access-Control-Allow-Origin: *');
 ini_set('error_reporting', E_ALL);
@@ -18,6 +19,60 @@ $status['status']=false;
 
 if(count($token)>0){
   $apikey='AIzaSyDSr5icH2KrI_YEZKSXQ-iZW973y9u1jLU';
+
+  $dataset=json_encode(array(
+    'password'=>'T87654321',
+    'primaryEmail'=>'tossapol.cc@dru.ac.th',
+    'recoveryPhone'=>'+66660249451',
+    'name'=>array(
+      'familyName'=>'testx',
+      'givenName'=>'testxxx',
+    ),
+  ));
+
+
+  $newset = array();
+  $getdata = json_decode($dataset);
+  foreach ($getdata as $key => $value) {
+    // if(gettype($value)==''
+    // echo $value;
+    // echo gettype($value);
+    switch (gettype($value)) {
+      case 'string':
+        $newset[$key]=$value;
+      break;
+      case 'object':
+
+        $newobject = $value;
+
+        foreach ($newobject as $keyone => $valueone) {
+          $newset[$key][$keyone]=$valueone;
+        }
+      break;
+    }
+  }
+
+  $setstr = '';
+
+  foreach ($newset as $key => $value) {
+    // echo gettype($value);
+    switch (gettype($value)) {
+      case 'string':
+        $setstr .= ' "'.$key.'":"'.$value.'", ';
+      break;
+      case 'array':
+        $newarray = $value;
+        $setstr .= ' "'.$key.'": {';
+        foreach ($newarray as $keyone => $valueone) {
+          $setstr .= ' "'.$keyone.'":"'.$valueone.'", ';
+        }
+        $setstr .= ' },';
+      break;
+    }
+  }
+  $setstr = '{'.$setstr.'}';
+
+
   $headers = array(
     'Authorization: Bearer '.$token['access_token'].'',
     'Content-Type: application/json',
@@ -30,7 +85,7 @@ if(count($token)>0){
 
   $ch = curl_init();
 
-  curl_setopt($ch, CURLOPT_URL, 'https://admin.googleapis.com/admin/directory/v1/users');
+  curl_setopt($ch, CURLOPT_URL, 'https://admin.googleapis.com/admin/directory/v1/users?access_token='.$token['access_token']);
   curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
   curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
   curl_setopt($ch, CURLOPT_ENCODING, 'utf-8');
@@ -39,14 +94,7 @@ if(count($token)>0){
   curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
   curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
   curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
-  curl_setopt($ch, CURLOPT_POSTFIELDS, '{
-   "name": {
-    "familyName": "teste",
-    "givenName": "teste"
-   },
-   "password": "senha@teste!12345",
-   "primaryEmail": "tossapol.cr@dru.ac.th"
-   }');
+  curl_setopt($ch, CURLOPT_POSTFIELDS, $setstr);
 
   $error_response = curl_exec($ch);
   curl_close ($ch);
