@@ -72,7 +72,7 @@ if(count($token)>0){
   }
   $setstr = '{'.$setstr.'}';
 
-  echo $setstr;
+  // echo $setstr;
   $headers = array(
     // 'Authorization: Bearer '.$token['access_token'].'',
     'Content-Type: application/json',
