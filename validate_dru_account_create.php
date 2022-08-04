@@ -25,8 +25,8 @@ if(count($token)>0){
     'primaryEmail'=>$getdata->data_email,
     'recoveryPhone'=>$getdata->data_telephone,
     'name'=>array(
-      'familyName'=>$getdata->data_fname_en,
-      'givenName'=>$getdata->data_lname_en,
+      'givenName'=>$getdata->data_fname_en,
+      'familyName'=>$getdata->data_lname_en,
     ),
   ));
 
