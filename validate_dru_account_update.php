@@ -99,7 +99,7 @@ if(count($token)>0){
   $error_response = curl_exec($ch);
   curl_close ($ch);
 
-  var_dump($error_response);
+  // var_dump($error_response);
   $array = json_decode($error_response);
   // echo "<br/>";
   // var_dump($array);
