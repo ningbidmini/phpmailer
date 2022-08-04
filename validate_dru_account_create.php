@@ -1,7 +1,7 @@
 <?php if(isset($_POST['token'])){ $token = $_POST['token']; }else{  $token=json_encode(array()); }?>
 <?php if(isset($_POST['maxresult'])){ $maxresult = $_POST['maxresult']; }else{  $maxresult="200"; }?>
 <?php if(isset($_POST['search'])){ $search = $_POST['search']; }else{  $search=""; }?>
-
+<?php if(isset($_POST['dataset'])){ $dataset = $_POST['dataset']; }else{  $dataset=""; }?>
 <?php
 header('Access-Control-Allow-Origin: *');
 ini_set('error_reporting', E_ALL);
@@ -15,20 +15,20 @@ foreach ($datatoken as $key => $value) {
 }
 $status = array();
 $status['status']=false;
-
+$status['message']='';
 
 if(count($token)>0){
   $apikey='AIzaSyDSr5icH2KrI_YEZKSXQ-iZW973y9u1jLU';
 
-  $dataset=json_encode(array(
-    'password'=>'T87654321',
-    'primaryEmail'=>'tossapol.cc@dru.ac.th',
-    'recoveryPhone'=>'+66660249451',
-    'name'=>array(
-      'familyName'=>'testx',
-      'givenName'=>'testxxx',
-    ),
-  ));
+  // $dataset=json_encode(array(
+  //   'password'=>'T87654321',
+  //   'primaryEmail'=>'tossapol.cc@dru.ac.th',
+  //   'recoveryPhone'=>'+66660249451',
+  //   'name'=>array(
+  //     'familyName'=>'testx',
+  //     'givenName'=>'testxxx',
+  //   ),
+  // ));
 
 
   $newset = array();
@@ -117,6 +117,10 @@ if(count($token)>0){
   //     $status['data'][$key]['primaryEmail']=$value->primaryEmail;
   //   }
   // }
+
+  if(isset($array->error)){
+    $status['message']='Duplicate!!!';
+  }
 }
 
 echo json_encode($status);
