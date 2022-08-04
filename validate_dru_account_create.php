@@ -19,16 +19,16 @@ $status['message']='';
 
 if(count($token)>0){
   $apikey='AIzaSyDSr5icH2KrI_YEZKSXQ-iZW973y9u1jLU';
-
-  // $dataset=json_encode(array(
-  //   'password'=>'T87654321',
-  //   'primaryEmail'=>'tossapol.cc@dru.ac.th',
-  //   'recoveryPhone'=>'+66660249451',
-  //   'name'=>array(
-  //     'familyName'=>'testx',
-  //     'givenName'=>'testxxx',
-  //   ),
-  // ));
+  $getdata = json_decode($dataset);
+  $dataset=json_encode(array(
+    'password'=>$getdata->data_password,
+    'primaryEmail'=>$getdata->data_email,
+    'recoveryPhone'=>$getdata->data_telephone,
+    'name'=>array(
+      'familyName'=>$getdata->data_fname_en,
+      'givenName'=>$getdata->data_lname_en,
+    ),
+  ));
 
 
   $newset = array();
