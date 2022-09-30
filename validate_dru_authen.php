@@ -27,6 +27,8 @@ if(count($token)>0){
   // var_dump($array);
   //
   // echo json_encode($status);
+}else{
+  $array = array();
 }
 
 if( isset($array->error)){
